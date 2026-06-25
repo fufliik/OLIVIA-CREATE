@@ -1,0 +1,47 @@
+import { Button } from "std-widgets.slint";
+
+
+
+export component Popup inherits Window {
+    width: 860px;
+    height: 480px;
+    background: transparent;
+
+    property<bool> isOpen: false;  // ✅ Точка с запятой
+
+    popup-content := Rectangle {
+        width: 380px;
+        height: 50px;
+        background: white;
+        border-radius: 16px;
+
+        y: isOpen ? 0px : 45px;   // ✅ Один px
+        opacity: isOpen ? 0.0 : 1.0;
+
+        animate y, opacity {
+            duration: 125ms;        // ✅ Только ms
+            //easing: ease-out-bounce;  //анимаця пяявление
+            easing: ease-out; //плавное появление
+        }
+
+        Text {
+            text: "Всплывающее окно!";
+            font-size: 16px;
+            color: black;
+            horizontal-alignment: center;
+            vertical-alignment: center;
+        }
+    }
+
+    Button {
+        text: "Показать";
+        x: 70px;
+        y: 50px;
+        width: 160px;
+        height: 50px;
+
+        clicked => {               // ✅ Стрелка =>
+            isOpen = !isOpen;      // ✅ Точка с запятой
+        }
+    }
+}
