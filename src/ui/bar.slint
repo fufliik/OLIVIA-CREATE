@@ -1,47 +1,45 @@
 import { Button } from "std-widgets.slint";
 
-
-
-export component Popup inherits Window {
+export component HotBar inherits Window {
     width: 860px;
     height: 480px;
     background: transparent;
 
-    property<bool> isOpen: false;  // ✅ Точка с запятой
+     in-out property <bool> hotbar_enabled: true;
 
-    popup-content := Rectangle {
+     in-out property <int> event_multiple_download_rogress;
+
+
+    HotBar := Rectangle {
         width: 380px;
-        height: 50px;
-        background: white;
+        height: 60px;
+        background: #0B0A0A;
         border-radius: 16px;
 
-        y: isOpen ? 0px : 45px;   // ✅ Один px
-        opacity: isOpen ? 0.0 : 1.0;
+        y: hotbar_enabled ? 0px : 40px;   //  oдин px
+        opacity: hotbar_enabled ? 0.0 : 1.0;
 
         animate y, opacity {
-            duration: 125ms;        // ✅ Только ms
-            //easing: ease-out-bounce;  //анимаця пяявление
+            duration: 160ms;        //  tолько ms
             easing: ease-out; //плавное появление
         }
 
         Text {
-            text: "Всплывающее окно!";
-            font-size: 16px;
-            color: black;
-            horizontal-alignment: center;
+            x: 70px;
+            text: "create-common.toml";
+            font-size: 14px;
+            color: #989898;
+
             vertical-alignment: center;
         }
-    }
 
-    Button {
-        text: "Показать";
-        x: 70px;
-        y: 50px;
-        width: 160px;
-        height: 50px;
+        Text {
+            x: 300px;
+            text: event_multiple_download_rogress;
+            font-size: 14px;
+            color: #989898;
+            vertical-alignment: center;
 
-        clicked => {               // ✅ Стрелка =>
-            isOpen = !isOpen;      // ✅ Точка с запятой
         }
     }
 }

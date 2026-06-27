@@ -2,15 +2,17 @@ import { Button } from "std-widgets.slint";
 import { Settings } from "./settings.slint";
 import { Login } from "login.slint";
 
+
 export component MainWindow inherits Window {
+
     z: 0;
     max-width: 860px;
     min-width: 860px;
     max-height: 480px;
     min-height: 480px;
-
     in-out property<bool> is_settings_open <=> settings_window.is_open_settings;
     in-out property<bool> is_login_open <=> login_window.is_open_login;
+
 //------------------------------------------------------------------------------------
     Image {
         width: 860px;
@@ -35,6 +37,7 @@ export component MainWindow inherits Window {
         border-radius: 20px;
         border-width: 8px;
         border-color: #0B0A0A;
+
         clip: true;
 
         Button {
@@ -56,7 +59,7 @@ export component MainWindow inherits Window {
         is_open_login: false;
     }
 //------------------------------------------------------------------------------------
-    in-out property <string> play_button_status: "Оффлайн";
+    in-out property <string> play_button_status;
     in-out property <color> play_button_status_color: #006D35;
     in-out property <bool> play_button_look: false;
     
@@ -87,7 +90,7 @@ export component MainWindow inherits Window {
             enabled: !is_settings_open && !is_login_open && !play_button_look;  // замораживание нажатие если открыты насройки
 
             clicked => {
-                debug("Кнопка играть нажата!");
+                debug("Иди нах");
                 button_play_run();
 
             }
@@ -119,5 +122,44 @@ export component MainWindow inherits Window {
         y: (parent.height - self.height) / 2;
         is_open_settings: false;  //по умолчанию
     }
+//------------------------------------------------------------------------------------
+    in-out property <bool> hotbar_enabled: true;
+    in-out property <string> event_multiple_download_rogress;
+    in-out property <string> event_multiple_download_text;
+
+
+        HotBar := Rectangle {
+            width: 380px;
+            height: 60px;
+            background: #0B0A0A;
+            border-radius: 16px;
+
+            y: hotbar_enabled ? 0px : 40px;   //  oдин px
+            opacity: hotbar_enabled ? 0.0 : 1.0;
+
+            animate y, opacity {
+                duration: 160ms;        //  tолько ms
+                easing: ease-out; //плавное появление
+            }
+
+            Text {
+                x: 70px;
+                text: event_multiple_download_text;
+                font-size: 14px;
+                color: #989898;
+
+                vertical-alignment: center;
+            }
+
+            Text {
+                x: 300px;
+                text: event_multiple_download_rogress;
+                font-size: 14px;
+                color: #989898;
+                vertical-alignment: center;
+
+            }
+        }
+
 }
 //------------------------------------------------------------------------------------
