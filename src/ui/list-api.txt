@@ -4,7 +4,7 @@
 in-out property <string> play_button_status: "Оффлайн";
 in-out property <string> play_button_status: "Загрузить";
 in-out property <string> play_button_status: "Обновить";
-
+Запуск...
 in-out property <string> play_button_status: "Играть";
 
 

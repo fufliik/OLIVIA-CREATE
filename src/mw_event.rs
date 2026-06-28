@@ -17,6 +17,15 @@ pub fn look(mw_weak: slint::Weak<MainWindow>, enabled: bool) {
     slint::invoke_from_event_loop(move || {
         if let Some(mw) = mw_weak.upgrade() {
             mw.set_play_button_look(enabled.into());
+            //
+            if enabled {
+                mw.set_play_button_status_color(slint::Color::from_rgb_u8(255, 99, 99));
+                mw.set_play_button_status("Запуск...".into());
+            }
+            if!enabled{
+                mw.set_play_button_status_color(slint::Color::from_rgb_u8(35, 134, 54));
+                mw.set_play_button_status("Играть".into());
+            };
         }
     })
         .unwrap();
