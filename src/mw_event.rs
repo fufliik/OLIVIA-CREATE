@@ -42,7 +42,7 @@ pub fn event_mdr(mw_weak: slint::Weak<MainWindow>, prigres_bar: &str) {
     .unwrap();
 }
 */
-
+// if let Some(pos) = path.rfind('\\')
 pub fn hotbar(mw_weak: slint::Weak<MainWindow>,enabled: bool, path: &str, progres: &str ) {
     let path = path.to_string();
     let progres = progres.to_string();
@@ -53,7 +53,7 @@ pub fn hotbar(mw_weak: slint::Weak<MainWindow>,enabled: bool, path: &str, progre
             mw.set_hotbar_enabled(enabled.into());
             
             if path != "0" {
-                if let Some(pos) = path.rfind('\\') {
+                if let Some(pos) = path.rfind(|c | c == '\\' || c == '/') {
                     let sline = &path[pos + 1..];
 
                     let truncated_name: String = sline.chars().take(25).collect();
