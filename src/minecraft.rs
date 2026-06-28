@@ -44,11 +44,15 @@ pub async fn main_minecrat(mw_weak: slint::Weak<MainWindow>, ) -> Result<(), Box
         },
 
     )
+        .custom_args(vec![
+            "--quickPlayMultiplayer".into(),
+            "95.216.48.148:25993".into(),
+        ])
         .memory(Memory::Gigabyte(6))
         .loader(NeoForge("21.1.233".to_string()).into())
         .build();
 
-    //mw_event::hotbar(mw_weak.clone(), false);
+
     install(&config, Some(&emitter)).await?;  //ll
 
     mw_event::hotbar(mw_weak.clone(), true,"0","0");
