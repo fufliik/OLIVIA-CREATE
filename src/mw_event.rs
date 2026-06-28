@@ -21,6 +21,7 @@ pub fn look(mw_weak: slint::Weak<MainWindow>, enabled: bool) {
     })
         .unwrap();
 }
+
 /*
 pub fn hotbar(mw_weak: slint::Weak<MainWindow>, enabled: bool) {
     slint::invoke_from_event_loop(move || {
@@ -48,13 +49,15 @@ pub fn hotbar(mw_weak: slint::Weak<MainWindow>,enabled: bool, path: &str, progre
 
     slint::invoke_from_event_loop(move || {
         if let Some(mw) = mw_weak.upgrade() {
-            
+
             mw.set_hotbar_enabled(enabled.into());
             
             if path != "0" {
                 if let Some(pos) = path.rfind('\\') {
                     let sline = &path[pos + 1..];
-                    mw.set_event_multiple_download_text(slint::SharedString::from(sline));
+
+                    let truncated_name: String = sline.chars().take(25).collect();
+                    mw.set_event_multiple_download_text(slint::SharedString::from(truncated_name));
                 } 
                 else { println!("No path found"); }
             };

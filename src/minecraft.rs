@@ -7,7 +7,7 @@ use lyceris::minecraft::{
     launch::launch,
 };
 use std::path::PathBuf;
-use crate::{mw_event, MainWindow};
+use crate::{directories, mw_event, MainWindow};
 
 //mw_event::play(mw_weak.clone(), "Загрузка...");
 pub async fn main_minecrat(mw_weak: slint::Weak<MainWindow>, ) -> Result<(), Box<dyn std::error::Error>> {
@@ -33,26 +33,31 @@ pub async fn main_minecrat(mw_weak: slint::Weak<MainWindow>, ) -> Result<(), Box
         })
         .await;
 
-    let local_appdata = std::env::var("LOCALAPPDATA")?;
-
-
+    let launcher_dir = directories::dir().expect("ERROR - dirs");
     let config = ConfigBuilder::new(
-        PathBuf::from(local_appdata).join("OliviaLauncher"),
+        &launcher_dir,
         "1.21.1".into(),
         lyceris::auth::AuthMethod::Offline {
             username: "Lyceris".into(),
             uuid: None,
 
         },
+
     )
         .memory(Memory::Gigabyte(6))
         .loader(NeoForge("21.1.233".to_string()).into())
         .build();
+
     //mw_event::hotbar(mw_weak.clone(), false);
-    install(&config, Some(&emitter)).await?;
+    install(&config, Some(&emitter)).await?;  //ll
+
     mw_event::hotbar(mw_weak.clone(), true,"0","0");
-    //let mut child = launch(&config, Some(&emitter)).await?;
-    //child.wait().await?;
+
+    let mut child = launch(&config, Some(&emitter)).await?; //ll
+
+    child.wait().await?; //ll
+
     mw_event::look(mw_weak.clone(), false);
+
     Ok(())
 }

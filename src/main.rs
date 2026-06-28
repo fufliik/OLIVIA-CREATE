@@ -1,5 +1,6 @@
 mod mw_event;
 mod minecraft;
+mod directories;
 
 slint::include_modules!();
 

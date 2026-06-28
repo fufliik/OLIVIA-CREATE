@@ -33,7 +33,7 @@ export component MainWindow inherits Window {
         x: parent.width - 100px; y:40px;
         width: 60px;
         height: 60px;
-        background: #006D35;
+        background: #238636;
         border-radius: 20px;
         border-width: 8px;
         border-color: #0B0A0A;
@@ -60,7 +60,7 @@ export component MainWindow inherits Window {
     }
 //------------------------------------------------------------------------------------
     in-out property <string> play_button_status;
-    in-out property <color> play_button_status_color: #006D35;
+    in-out property <color> play_button_status_color: #238636;
     in-out property <bool> play_button_look: false;
     
     callback button_play_run;
@@ -125,7 +125,7 @@ export component MainWindow inherits Window {
 //------------------------------------------------------------------------------------
     in-out property <bool> hotbar_enabled: true;
     in-out property <string> event_multiple_download_rogress;
-    in-out property <string> event_multiple_download_text;
+    in-out property <string> event_multiple_download_text; //25 символов
 
 
         HotBar := Rectangle {
