@@ -22,6 +22,8 @@ pub async fn main_minecrat(mw_weak: slint::Weak<MainWindow>, ) -> Result<(), Box
             move |(path, current, total): (String, u64, u64)| {
                 let event = format!("{} / {}", current, total);
                 mw_event::hotbar(mw_weak2.clone(), false, &path, &event);
+                mw_event::play(mw_weak2.clone(),"Загрузка..."); // переписать
+
             },
         )
         .await;
