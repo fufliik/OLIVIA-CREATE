@@ -4,8 +4,6 @@ export component Login inherits Window {
     z: 1;
     width: 380px;
     height: 480px;
-    //width: 100%;
-    //height:100%;
     background: transparent;
 
     default-font-family: "Inter";
@@ -14,7 +12,10 @@ export component Login inherits Window {
 
     in-out property<bool> is_open_login: false;
     visible: is_open_login;
+
     in-out property <string> error_input;
+    in-out property <string> username;
+    in-out property <string> passwords;
 
     Rectangle {
         width: 100%;
@@ -22,6 +23,7 @@ export component Login inherits Window {
         background: #0B0A0A;
         opacity: 1;
     }
+//----------------------------------------------------------------------------------------------------
     Rectangle {
         Text {
                 x: 30px;
@@ -38,21 +40,47 @@ export component Login inherits Window {
             background: #212121;
             border-radius: 12px;
 
+
             TextInput {
                    x: 10px;
-                   text: "Edit me";
+                   font-size: 14px;
+                   text: "username";
                    width: max(parent.width, self.preferred-width);
                    vertical-alignment: center;
-                }
+            }
         }
     }
+//-----------------------------------------------------------------------------------------------------
+    Rectangle {
+        Text {
+            x: 30px;
+            y: 190px;
+            text: "Пароль";
+            color: #969696;
+        }
+        Rectangle {
+            x: 20px;
+            y: 215px;
+            width: 340px;
+            height: 60px;
+            clip: true;
+            background: #212121;
+            border-radius: 12px;
 
-    Text {
-        x: 30px;
-        y: 190px;
-        text: "Пароль";
-        color: #969696;
+
+            TextInput {
+                x: 10px;
+
+                font-size: 14px;
+                input-type: password;  //некоректно роботает выделение текста в поле пароль
+                text: "password";
+                width: max(parent.width, self.preferred-width);
+                vertical-alignment: center;
+
+            }
+        }
     }
+//-----------------------------------------------------------------------------------------------
     Rectangle {
          x: 5px;
          y: 320px;
@@ -61,18 +89,25 @@ export component Login inherits Window {
 
         Text{
             text: "никнейм не должен содержать"; //error_input
-            color: #FF6363;
+            color: #E03A3A;
             horizontal-alignment: left;
         }
     }
+//--------------------------------------------------------------------------------------------------
     Rectangle {
-          x: parent.width - 190px;
+          x: parent.width - 180px;
           y: 400px;
-          width: 150px;
+          width: 160px;
           height: 45px;
           border-radius: 100px;
           clip: true;
           background:#238636;
+
+          Text {
+            text: "Авторизоваться";
+
+          }
+
 
           Button {
             width: 100%;
@@ -82,7 +117,30 @@ export component Login inherits Window {
 
     }
 
+//--------------------------------------------------------------------------------------------------
+    Rectangle {
+          x: 20px;
+          y: 400px;
+          width: 160px;
+          height: 45px;
+          border-radius: 100px;
+          clip: true;
+          background:#E03A3A;
 
+          Text {
+            text: "Зарегистрироваться";
+
+          }
+
+          Button {
+            width: 100%;
+            height: 100%;
+
+          }
+
+    }
+
+//--------------------------------------------------------------------------------------------------
 
 
 
@@ -93,6 +151,7 @@ export component Login inherits Window {
          height: 50px;
          border-radius: 16px;
          clip: true;
+         
          Button {
              width: 100%;
              height: 100%;

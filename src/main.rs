@@ -1,6 +1,7 @@
 mod mw_event;
 mod minecraft;
 mod directories;
+mod auth;
 
 slint::include_modules!();
 
