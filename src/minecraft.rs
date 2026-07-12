@@ -7,7 +7,7 @@ use lyceris::minecraft::{
     launch::launch,
 };
 use std::path::PathBuf;
-use crate::{directories, mw_event, MainWindow};
+use crate::{directories, mw_event, auth, MainWindow};
 
 //mw_event::play(mw_weak.clone(), "Загрузка...");
 pub async fn main_minecrat(mw_weak: slint::Weak<MainWindow>, ) -> Result<(), Box<dyn std::error::Error>> {
@@ -36,11 +36,12 @@ pub async fn main_minecrat(mw_weak: slint::Weak<MainWindow>, ) -> Result<(), Box
         .await;
 
     let launcher_dir = directories::dir().expect("ERROR - dirs");
+    let username = auth::load_username();
     let config = ConfigBuilder::new(
         &launcher_dir,
         "1.21.1".into(),
         lyceris::auth::AuthMethod::Offline {
-            username: "Lyceris".into(),
+            username,
             uuid: None,
 
         },
