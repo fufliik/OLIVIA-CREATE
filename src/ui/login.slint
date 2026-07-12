@@ -2,13 +2,13 @@ import {Button} from "std-widgets.slint";
 
 export component Login inherits Window {
     z: 1;
-    width: 380px;
+    width: 860px;
     height: 480px;
     background: transparent;
 
-    default-font-family: "Inter";
-    default-font-size: 13px;
-    default-font-weight: FontWeight.bold;
+    //default-font-family: "Inter";
+    //default-font-size: 13px;
+    //default-font-weight: FontWeight.bold;
 
     in-out property<bool> is_open_login: false;
     visible: is_open_login;
@@ -26,13 +26,16 @@ export component Login inherits Window {
 //----------------------------------------------------------------------------------------------------
     Rectangle {
         Text {
-                x: 30px;
+                x: 270px;
                 y: 75px;
                 text: "Никнейм";
                 color: #969696;
+                font-size: 10pt;
+                font-family: "Inter";
+                font-weight: FontWeight.semi-bold;
             }
         Rectangle {
-            x: 20px;
+            x: 260px;
             y: 100px;
             width: 340px;
             height: 60px;
@@ -43,23 +46,28 @@ export component Login inherits Window {
 
             TextInput {
                    x: 10px;
-                   font-size: 14px;
+                   font-size: 16px;
                    text: "username";
                    width: max(parent.width, self.preferred-width);
                    vertical-alignment: center;
+                   font-family: "Inter";
+                   font-weight: FontWeight.semi-bold;
             }
         }
     }
 //-----------------------------------------------------------------------------------------------------
     Rectangle {
         Text {
-            x: 30px;
+            x: 270px;
             y: 190px;
             text: "Пароль";
             color: #969696;
+            font-size: 10pt;
+            font-family: "Inter";
+            font-weight: FontWeight.semi-bold;
         }
         Rectangle {
-            x: 20px;
+            x: 260px;
             y: 215px;
             width: 340px;
             height: 60px;
@@ -71,18 +79,19 @@ export component Login inherits Window {
             TextInput {
                 x: 10px;
 
-                font-size: 14px;
+                font-size: 16px;
                 input-type: password;  //некоректно роботает выделение текста в поле пароль
                 text: "password";
                 width: max(parent.width, self.preferred-width);
                 vertical-alignment: center;
+
 
             }
         }
     }
 //-----------------------------------------------------------------------------------------------
     Rectangle {
-         x: 5px;
+         x: 235px;
          y: 320px;
          width: 260px;
          height: 25px;
@@ -90,21 +99,27 @@ export component Login inherits Window {
         Text{
             text: "никнейм не должен содержать"; //error_input
             color: #E03A3A;
-            horizontal-alignment: left;
+            horizontal-alignment: center;
+            font-size: 10pt;
+            font-family: "Inter";
+            font-weight: FontWeight.semi-bold;
         }
     }
 //--------------------------------------------------------------------------------------------------
     Rectangle {
-          x: parent.width - 180px;
+          x: 660px;
           y: 400px;
           width: 160px;
           height: 45px;
-          border-radius: 100px;
+          border-radius: 25px;
           clip: true;
           background:#238636;
 
           Text {
             text: "Авторизоваться";
+            font-size: 10pt;
+            font-family: "Inter";
+            font-weight: FontWeight.semi-bold;
 
           }
 
@@ -119,16 +134,19 @@ export component Login inherits Window {
 
 //--------------------------------------------------------------------------------------------------
     Rectangle {
-          x: 20px;
+          x: 40px;
           y: 400px;
           width: 160px;
           height: 45px;
-          border-radius: 100px;
+          border-radius: 25px;
           clip: true;
           background:#E03A3A;
 
           Text {
             text: "Зарегистрироваться";
+            font-size: 10pt;
+            font-family: "Inter";
+            font-weight: FontWeight.semi-bold;
 
           }
 
@@ -145,18 +163,29 @@ export component Login inherits Window {
 
 
     Rectangle {
-         x: parent.width - 85px;
-         y: 30px;
-         width: 50px;
-         height: 50px;
-         border-radius: 16px;
+         x: 710px;
+         y: 40px;
+         width: 120px;
+         height: 45px;
+         border-radius: 24px;
          clip: true;
+         background: #151515;
+
+         Text {
+                     x:47px;
+                     text: "Назад";
+                     color: #ffffff;
+                     font-size: 11pt;
+                     font-family: "Inter";
+                     font-weight: FontWeight.semi-bold;
+                 }
          
          Button {
              width: 100%;
              height: 100%;
-             icon: @image-url("image/exit.png");
-             icon-size: 16px;
+             text: "                   ";
+             icon: @image-url("image/exit_1.png");
+             icon-size: 24px;
 
              clicked => {
                 is_open_login = false;
