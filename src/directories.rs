@@ -1,16 +1,24 @@
-extern crate dirs;
-
 use std::path::PathBuf;
-pub fn dir() -> Option<PathBuf> {
-    let data_dir = dirs::data_local_dir()?;
+
+pub fn dir() -> std::io::Result<PathBuf> {
+    let data_dir = dirs::data_local_dir()
+        .ok_or(std::io::Error::new(
+            std::io::ErrorKind::NotFound,
+            "Local data directory not found",
+        ))?;
+
     let launcher_dir = data_dir.join(".OliviaLauncher");
-    std::fs::create_dir_all(&launcher_dir).expect("Failed to create launcher dir");
-    Some(launcher_dir)
+    std::fs::create_dir_all(&launcher_dir)?;
+
+    Ok(launcher_dir)
 }
-pub fn config_file() -> Option<PathBuf> {
+
+pub fn config_file() -> std::io::Result<PathBuf> {
     let cfg = dir()?.join("cfg.json");
+
     if !cfg.exists() {
-        std::fs::File::create(&cfg).expect("Не удалось создать файл");
+        std::fs::File::create(&cfg)?;
     }
-    Some(cfg)
+
+    Ok(cfg)
 }
