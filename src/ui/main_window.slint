@@ -1,10 +1,9 @@
 import { Button } from "std-widgets.slint";
 import { Settings } from "./settings.slint";
 import { Login } from "login.slint";
-
+export { Login } from "login.slint";
 
 export component MainWindow inherits Window {
-
     z: 0;
     max-width: 860px;
     min-width: 860px;
@@ -58,6 +57,8 @@ export component MainWindow inherits Window {
         y:(parent.height - self.height) / 2;
         is_open_login: false;
     }
+    in-out property <string> username <=> login_window.username;
+    callback save_username <=> login_window.save_username;
 //------------------------------------------------------------------------------------
     in-out property <string> play_button_status;
     in-out property <color> play_button_status_color: #238636;
