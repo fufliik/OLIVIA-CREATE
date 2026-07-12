@@ -11,7 +11,7 @@ export component Login inherits Window {
 
 
     in-out property <string> username;
-    callback save_username();
+    callback save_username(string);
 
     Rectangle {
         width: 100%;
@@ -125,7 +125,7 @@ export component Login inherits Window {
             height: 100%;
             clicked => {
                 debug("иди нах ччурка из авторизации");
-                save_username();
+                save_username(username);
 
             }
 

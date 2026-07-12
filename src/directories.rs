@@ -14,7 +14,7 @@ pub fn dir() -> std::io::Result<PathBuf> {
 }
 
 pub fn config_file() -> std::io::Result<PathBuf> {
-    let cfg = dir()?.join("cfg.json");
+    let cfg = dir()?.join("username.txt");
 
     if !cfg.exists() {
         std::fs::File::create(&cfg)?;
